@@ -132,7 +132,7 @@ class LoginFragment : Fragment() {
                                 databaseHelper.setCurrentUserId(loggedInUserId)
 
                                 val action =
-                                    LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                                    LoginFragmentDirections.actionLoginFragmentToMnHome()
                                 findNavController().navigate(action)
 
                                 toastMsg("Sign In Successfully")

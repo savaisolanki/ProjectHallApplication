@@ -23,6 +23,7 @@ class AlphabeticalExpandableAdapter(
     private val userClickListener: OnUserClickListener
 ) : RecyclerView.Adapter<AlphabeticalExpandableAdapter.AlphabetViewHolder>() {
 
+    private var expandedPosition = RecyclerView.NO_POSITION
 
     /*
     * Define HashMap that contain Char and list or users

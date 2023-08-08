@@ -42,13 +42,12 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as MainActivity).setStatusBarColor(this)
 
-
         /*
         * initialize shared preference and database helper class
         */
 
-        val sharedPreferences =
-            requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+         sharedPreferences =
+             requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
         val currentUserMobileNo = sharedPreferences.getString("CURRENT_USER_MOBILE", null)
 
@@ -114,6 +113,7 @@ class HomeFragment : Fragment() {
                     val newList = databaseHelper.getAllUsers()
                     expandableAdapter.updateData(newList)
                     findNavController().navigate(R.id.action_to_loginFragment)
+
                 }
 
             }
@@ -128,14 +128,6 @@ class HomeFragment : Fragment() {
 
         }
 
-
-    }
-
-    /*
-    * On Resume Call RecyclerView*/
-    override fun onResume() {
-        super.onResume()
-        recyclerView()
 
     }
 
@@ -161,8 +153,9 @@ class HomeFragment : Fragment() {
                 getGroupList(userList),
                 object : AlphabeticalExpandableAdapter.OnUserClickListener {
                     override fun onUserClick(user: User) {
-                        val action = HomeFragmentDirections.actionMnHomeToMnAccount(user)
+                        val action=HomeFragmentDirections.actionMnHomeToDetailsFragment2(user)
                         findNavController().navigate(action)
+
                     }
                 })
         binding.rvHeaderRecyclerView.adapter = expandableAdapter

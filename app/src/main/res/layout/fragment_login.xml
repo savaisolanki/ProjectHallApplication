@@ -48,7 +48,7 @@
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tlEmailSignIn"
+                    android:id="@+id/tlMobileSignIn"
                     style="@style/CustomEditTextLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -59,13 +59,13 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etEmailSignIn"
+                        android:id="@+id/etMobileSignIn"
                         style="@style/CustomEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/white"
-                        android:hint="@string/email"
-                        android:inputType="textEmailAddress" />
+                        android:hint="@string/your_mobile"
+                        android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -75,9 +75,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_7sdp"
                     app:endIconMode="password_toggle"
-                    app:layout_constraintEnd_toEndOf="@id/tlEmailSignIn"
-                    app:layout_constraintStart_toStartOf="@id/tlEmailSignIn"
-                    app:layout_constraintTop_toBottomOf="@id/tlEmailSignIn">
+                    app:layout_constraintEnd_toEndOf="@id/tlMobileSignIn"
+                    app:layout_constraintStart_toStartOf="@id/tlMobileSignIn"
+                    app:layout_constraintTop_toBottomOf="@id/tlMobileSignIn">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPasswordSignIn"
@@ -96,8 +96,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:text="@string/login"
-                    app:layout_constraintEnd_toEndOf="@id/tlEmailSignIn"
-                    app:layout_constraintStart_toStartOf="@id/tlEmailSignIn"
+                    app:layout_constraintEnd_toEndOf="@id/tlMobileSignIn"
+                    app:layout_constraintStart_toStartOf="@id/tlMobileSignIn"
                     app:layout_constraintTop_toBottomOf="@id/tlPasswordSignIn" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -112,8 +112,8 @@
                     android:textColor="@color/black"
                     android:textStyle="normal|bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/tlEmailSignIn"
-                    app:layout_constraintStart_toStartOf="@id/tlEmailSignIn"
+                    app:layout_constraintEnd_toEndOf="@id/tlMobileSignIn"
+                    app:layout_constraintStart_toStartOf="@id/tlMobileSignIn"
                     app:layout_constraintTop_toBottomOf="@id/btnSignIn" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

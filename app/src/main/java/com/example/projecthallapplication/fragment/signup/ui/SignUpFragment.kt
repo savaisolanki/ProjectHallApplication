@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.projecthallapplication.R
+import com.example.projecthallapplication.activity.ui.MainActivity
 import com.example.projecthallapplication.database.DatabaseHelper
 import com.example.projecthallapplication.databinding.FragmentSignUpBinding
 import com.example.projecthallapplication.utils.Validation.isEmailValid
@@ -33,10 +34,15 @@ class SignUpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity() as MainActivity).setStatusBarColor(this)
+
         databaseHelper = DatabaseHelper(requireContext())
 
 
-
+        /*
+        * This function also check our validation
+        * */
 
         binding.btnSignUp.setOnClickListener {
             val firstName = binding.etFirstNameSignUp.text.toString().trim()
@@ -104,6 +110,9 @@ class SignUpFragment : Fragment() {
 
                 }
 
+                /*
+                * check password and confirm password match or not
+                * */
                 password != confirmPassword -> {
                     toastMsg("Passwords do not match")
                     binding.etConfirmPasswordSignUp.requestFocus()
@@ -113,11 +122,25 @@ class SignUpFragment : Fragment() {
                 else -> {
                     when {
 
+                        /*
+                        * This database helper method check our mobile number already exists or not
+                        * if exists its gives toast
+                        * else go on next steps
+                        *
+                        * */
+
                         databaseHelper.isMobileNumberExists(mobileNumber) -> {
                             toastMsg("Mobile number is already registered")
                             binding.etMobileSignUp.requestFocus()
 
                         }
+
+                        /*
+                       * This database helper method check our email id  already exists or not
+                       * if exists its gives toast
+                       * else go on next steps
+                       *
+                       * */
 
                         databaseHelper.isEmailExists(email) -> {
                             toastMsg("Email is already registered")
@@ -135,11 +158,15 @@ class SignUpFragment : Fragment() {
                                 receiveEmailSms
                             )
 
+                            /*
+                            * This user id check that if user id greater then -1 data inserted successfully redirect login fragment  else un successfully
+                            * */
+
                             if (userId > -1) {
 
                                 val action =
                                     SignUpFragmentDirections.actionSignUpFragmentToLoginFragment()
-                                findNavController().navigate(action)
+                                findNavController().popBackStack()
                                 toastMsg("Sign Up SuccessFully")
 
                             } else {
@@ -152,7 +179,9 @@ class SignUpFragment : Fragment() {
         }
 
 
-
+        /*
+        * Back arrow we define pop bck stack
+        * */
         binding.ivBackArrow.setOnClickListener {
             findNavController().popBackStack()
         }

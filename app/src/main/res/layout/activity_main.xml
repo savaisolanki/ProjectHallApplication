@@ -7,39 +7,14 @@
 
     </data>
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawerLayout"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".activity.ui.MainActivity">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/mainContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".activity.ui.MainActivity">
-
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolBar"
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                android:background="@android:color/white"
-                android:elevation="0dp"
-                android:gravity="center"
-                android:visibility="gone"
-                android:textSize="@dimen/_14sdp"
-                app:contentInsetLeft="0dp"
-                app:contentInsetStart="0dp"
-                app:contentInsetStartWithNavigation="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-                app:titleCentered="true">
-
-
-            </androidx.appcompat.widget.Toolbar>
 
 
             <androidx.fragment.app.FragmentContainerView
@@ -52,7 +27,7 @@
                 app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolBar"
+                app:layout_constraintTop_toTopOf="parent"
                 app:navGraph="@navigation/nav_graph" />
 
 
@@ -73,18 +48,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigationView"
-            android:layout_width="@dimen/_230sdp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@android:color/white"
-            android:fitsSystemWindows="false"
-            app:headerLayout="@layout/drawer_header_layout">
 
 
-        </com.google.android.material.navigation.NavigationView>
-
-    </androidx.drawerlayout.widget.DrawerLayout>
 
 </layout>

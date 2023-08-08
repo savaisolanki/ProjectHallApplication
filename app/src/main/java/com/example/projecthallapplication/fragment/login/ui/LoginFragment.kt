@@ -18,6 +18,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.projecthallapplication.R
+import com.example.projecthallapplication.activity.ui.MainActivity
 import com.example.projecthallapplication.database.DatabaseHelper
 import com.example.projecthallapplication.databinding.FragmentLoginBinding
 import com.example.projecthallapplication.utils.Validation
@@ -41,29 +42,52 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity() as MainActivity).setStatusBarColor(this)
+
         signUpForgot()
 
+        /*
+        * initialize Database helper in login fragment
+        * */
+
         databaseHelper = DatabaseHelper(requireContext())
+
+        /*
+        * Define shared preference given name and get data via shared preference one time of session manage
+        * */
         sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
+
+        /*
+        * This function is perform of our validation
+        * */
 
         binding.btnSignIn.setOnClickListener {
 
             when {
-                Validation.isFieldEmpty(binding.etEmailSignIn.text.toString().trim()) -> {
-                    toastMsg("Please Enter Email")
-                    binding.etEmailSignIn.requestFocus()
+
+                Validation.isFieldEmpty(binding.etMobileSignIn.text.toString().trim()) -> {
+                    toastMsg("Please Enter Mobile No")
+                    binding.etMobileSignIn.requestFocus()
 
                 }
 
-                Validation.isEmailValid(binding.etEmailSignIn.text.toString().trim()) -> {
-                    toastMsg("Please Enter Valid email")
-                    binding.etEmailSignIn.requestFocus()
+
+                Validation.isMobileValidation(binding.etMobileSignIn.text.toString().trim()) -> {
+                    toastMsg("Please Enter Valid Mobile Number ")
+                    binding.etMobileSignIn.requestFocus()
+
+                }
+
+                Validation.isMobileValidate(binding.etMobileSignIn.text.toString().trim()) -> {
+                    toastMsg("Please enter minimum 8 and maximum 14 digit mobile number ")
+                    binding.etMobileSignIn.requestFocus()
 
                 }
 
                 Validation.isFieldEmpty(binding.etPasswordSignIn.text.toString().trim()) -> {
-                    toastMsg("Please password")
+                    toastMsg("Please Enter password")
                     binding.etPasswordSignIn.requestFocus()
 
                 }
@@ -80,15 +104,54 @@ class LoginFragment : Fragment() {
                 else -> {
 
                     when {
+
+                        /*
+                        * Login with mobile and password which we register our insertuser method
+                        * */
                         databaseHelper.loginUser(
-                            binding.etEmailSignIn.text.toString(),
+                            binding.etMobileSignIn.text.toString(),
                             binding.etPasswordSignIn.text.toString()
                         ) -> {
-                            val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-                            findNavController().navigate(action)
-                            toastMsg("Sign In Successfully")
-                            saveLoginState(true)
 
+                            /*
+                            * here we can login with mobile number  that check our mobile number is null or not
+                            * if null login uncessfully
+                            * else save info in shard preference and session is true and login sucessfully
+                            * */
+
+                            val loggedInUser =
+                                databaseHelper.getUserByMobile(binding.etMobileSignIn.text.toString())
+
+                            if (loggedInUser != null) {
+
+                                val loggedInUserId = loggedInUser.id
+
+                                /*
+                                * set current user id
+                                *  */
+                                databaseHelper.setCurrentUserId(loggedInUserId)
+
+                                val action =
+                                    LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                                findNavController().navigate(action)
+
+                                toastMsg("Sign In Successfully")
+
+                                saveLoginState(true)
+
+                                /*
+                                 * put string home fragment we can get this mobile number information get
+                                 * */
+                                val editor = sharedPreferences.edit()
+                                editor.putString(
+                                    "CURRENT_USER_MOBILE",
+                                    binding.etMobileSignIn.text.toString()
+                                )
+                                editor.apply()
+
+                            } else {
+                                toastMsg("User not found")
+                            }
                         }
 
                         else -> {
@@ -104,6 +167,10 @@ class LoginFragment : Fragment() {
 
     }
 
+
+    /*
+    * This function put boolean value that means our user is login if user kill app and come again start with  home page not with splash screen
+    * */
     private fun saveLoginState(isLoggedIn: Boolean) {
         val editor = sharedPreferences.edit()
         editor.putBoolean("IS_LOGGED_IN", isLoggedIn)
@@ -111,7 +178,12 @@ class LoginFragment : Fragment() {
     }
 
 
-    //Spannable String Function
+    /*
+    * This Function define that specific length starting length to ending length we can change color
+    * Remove underline false
+    * on particular length starting index and ending index perform click event
+    * particular string we perform above all operation
+    * */
     private fun signUpForgot() {
         binding.tvSignUp.movementMethod = LinkMovementMethod.getInstance()
         val signUp: ClickableSpan = object : ClickableSpan() {
@@ -148,7 +220,11 @@ class LoginFragment : Fragment() {
         binding.tvSignUp.text = spannable
     }
 
-    // Toast Msg Function
+
+    /*
+    * Define Toast function define our toast method
+    * */
+
     private fun toastMsg(msg: String) {
         Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }

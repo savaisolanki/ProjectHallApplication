@@ -29,5 +29,6 @@
     <string name="your_last_name">LastName</string>
     <string name="user_list">User List</string>
     <string name="a">A</string>
+    <string name="your_mobile">Mobile No</string>
 
 </resources>

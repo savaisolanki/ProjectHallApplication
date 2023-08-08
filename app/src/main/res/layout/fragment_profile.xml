@@ -13,6 +13,8 @@
         tools:context=".fragment.profile.ui.ProfileFragment">
 
 
+
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvProfileDetails"
             android:layout_width="match_parent"
@@ -148,7 +150,6 @@
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold|italic"
                     android:gravity="start"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:layout_marginStart="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_5sdp"
@@ -156,6 +157,36 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvYourEmail" />
 
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvYourMobile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/your_mobile"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold|italic"
+                    android:gravity="start"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvEmailData" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvMobileData"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/your_mobile"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold|italic"
+                    android:gravity="start"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvYourMobile" />
 
 
 

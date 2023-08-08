@@ -3,6 +3,10 @@ package com.example.projecthallapplication.dataclass
 import android.os.Parcel
 import android.os.Parcelable
 
+
+/*
+* Define Dataclass store value via dataclass
+* */
 data class User(
     val id: Int,
     val firstName: String,

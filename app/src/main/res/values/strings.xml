@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">ProjectHallApplication</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bottom_home">Home</string>
+    <string name="bottom_account">Profile</string>
+    <string name="navigation_drawer_open">open\n</string>
+    <string name="navigation_drawer_close">close\n</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="sign_in_text_dont_account_forgot_password">Don\'t have an account?\tSignUp</string>
+    <string name="sign_up_first_name_edittext">FirstName</string>
+    <string name="sign_up_last_name_edittext">LastName</string>
+    <string name="sign_Up_number_edittext">Mobile No</string>
+    <string name="sign_up_email_id_edittext">Email</string>
+    <string name="sign_up_password_edittext">Password</string>
+    <string name="sign_up_confirm_password_edittext">Confirm Password</string>
+    <string name="sign_in_button_sign_up">Sign Up</string>
+    <string name="sign_up_receive_email_sms">Yes, I would like to receive emails and SMS regarding the promotions and special offers.</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="preferences">Alpha</string>
+    <string name="hello">Hello</string>
+    <string name="name">Name</string>
+    <string name="nice_to_meet_you_here_is_your_all_information_and_have_a_good_day">Nice To Meet You , Here is Your All Information and Have A Good Day</string>
+    <string name="your_name">Name</string>
+    <string name="your_email">Email</string>
+    <string name="home_page">Welcome To The Home Page , \tYour Day will Be Nice</string>
+    <string name="your_last_name">LastName</string>
+    <string name="user_list">User List</string>
+    <string name="a">A</string>
+
+</resources>

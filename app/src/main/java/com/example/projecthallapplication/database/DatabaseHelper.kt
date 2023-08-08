@@ -126,6 +126,11 @@ class DatabaseHelper(context: Context) :
     }
 
 
+
+
+
+
+
     @SuppressLint("Range")
     fun getCurrentUser(): User? {
         val db = this.readableDatabase
